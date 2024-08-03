@@ -2,6 +2,8 @@
 
 This repository is to be used as the base for Rails lessons 8, 9, 10, and 11.  The lesson information is below.
 
+**I am a volunteer instructor there, and this an example repo to help each student through the progression of these lessons.**
+
 [Lesson 8](/lessons/Lesson-8-Some-Rails-Concepts.md)  
 [Assignment 8a](/lessons/Assignment-8a-Rails-Basic-Skills-Debugging.md)  
 [Assignment 8b](/lessons/Assignment-8b-Rails-Basic-Skills-Exception-Handling.md)  
