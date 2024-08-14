@@ -24,26 +24,22 @@ class CustomersController < ApplicationController
   # POST /customers or /customers.json
   def create
     @customer = Customer.new(customer_params)
-    @customer.save
-    flash.notice = "The customer record was created successfully."
-    redirect_to @customer
-
-    respond_to do |format|
-      if @customer.save
-        format.html { redirect_to customer_url(@customer), notice: "Customer was successfully created." }
-        format.json { render :show, status: :created, location: @customer }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @customer.errors, status: :unprocessable_entity }
-      end
+    if @customer.save
+      flash.notice = "The customer record was created successfully."
+      redirect_to @customer
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /customers/1 or /customers/1.json
   def update
-    @customer.update(customer_params)
-    flash.notice = "The customer record was updated successfully."
-    redirect_to @customer
+    if @customer.update(customer_params)
+      flash.notice = "The customer record was updated successfully."
+      redirect_to @customer
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   # DELETE /customers/1 or /customers/1.json
