@@ -1,23 +1,59 @@
 require 'rails_helper'
-RSpec.describe Customer, type: :model do
-  subject { Customer.new(first_name: "Jack", last_name: "Smith", phone: "8889995678", email: "jsmith@sample.com" )}
-  it "is valid with valid attributes" do
-    expect(subject).to be_valid
+RSpec.describe "CustomersControllers", type: :request do
+  describe "get customers_path" do
+    it "renders the index view" do
+      FactoryBot.create_list(:customer, 10)
+      get customers_path
+      expect(response).to render_template(:index)
+    end
   end
-  it "is not valid without a first_name" do
-    subject.first_name=nil
-    expect(subject).to_not be_valid
+  describe "get customer_path" do
+    it "renders the :show template" do
+      customer = FactoryBot.create(:customer)
+      get customer_path(id: customer.id)
+      expect(response).to render_template(:show)
+    end
+    it "redirects to the index path if the customer id is invalid" do
+      get customer_path(id: 5000) #an ID that doesn't exist
+      expect(response).to redirect_to customers_path
+    end
   end
-  it "is not valid without a last_name" do
-    subject.last_name=nil
-    expect(subject).to_not be_valid
+describe "get new_customer_path" do
+    it "renders the :new template"
   end
-  it "is not valid without a phone number"
-  it "is not valid without an email"
-  it "is not valid if the phone number is not 10 chars"
-  it "is not valid if the phone number is not all digits"
-  it "is not valid if the email address doesn't have a @"
-  it "returns the correct full_name" do
-    expect(subject.full_name).to eq("Jack Smith")
+  describe "get edit_customer_path" do
+    it "renders the :edit template"
+  end
+  describe "post customers_path with valid data" do
+    it "saves a new entry and redirects to the show path for the entry" do
+      customer_attributes = FactoryBot.attributes_for(:customer)
+      expect { post customers_path, params: {customer: customer_attributes}
+    }.to change(Customer, :count)
+      expect(response).to redirect_to customer_path(id: Customer.last.id)
+    end
+  end
+  describe "post customers_path with invalid data" do
+    it "does not save a new entry or redirect" do
+      customer_attributes = FactoryBot.attributes_for(:customer)
+      customer_attributes.delete(:first_name)
+      expect { post customers_path, params: {customer: customer_attributes}
+    }.to_not change(Customer, :count)
+      expect(response).to render_template(:new)
+    end
+  end
+  describe "put customer_path with valid data" do
+    it "updates an entry and redirects to the show path for the customer"
+  end
+  describe "put customer_path with invalid data" do
+    it "does not update the customer record or redirect" do
+      customer = FactoryBot.create(:customer)
+      put customer_path(customer.id), params: {customer: {phone: "123"}}
+      customer.reload
+      expect(customer.phone).not_to eq("123")
+      expect(response).to render_template(:edit) 
+    end
+  end
+  describe "delete a customer record" do
+    it "deletes a customer record"
   end
 end
