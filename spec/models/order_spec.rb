@@ -103,7 +103,7 @@ RSpec.describe "OrdersControllers", type: :request do
         delete customer_path(customer.id)
       }.to_not change(Customer, :count)
 
-      expect(flash[:notice]).to eq("That customer record could not be deleted, because the customer has orders.")
+      expect(flash[:alert]).to eq("That customer record could not be deleted, because the customer has orders.")
       expect(response).to redirect_to customers_path
     end
   end
