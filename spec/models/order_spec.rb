@@ -52,7 +52,6 @@ RSpec.describe "OrdersControllers", type: :request do
     end
   end
 
-
   describe "post orders_path with invalid data" do
     it "does not save a new entry or redirect" do
       order_attributes = FactoryBot.attributes_for(:order)
@@ -94,4 +93,19 @@ RSpec.describe "OrdersControllers", type: :request do
       expect(response).to redirect_to orders_path
     end
   end
+
+  describe "delete customer with associated orders" do
+    it "does not delete the customer and shows a flash message when the customer has orders" do
+      customer = FactoryBot.create(:customer)
+      order = FactoryBot.create(:order, customer: customer)
+
+      expect {
+        delete customer_path(customer.id)
+      }.to_not change(Customer, :count)
+
+      expect(flash[:notice]).to eq("That customer record could not be deleted, because the customer has orders.")
+      expect(response).to redirect_to customers_path
+    end
+  end
+
 end

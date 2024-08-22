@@ -57,4 +57,7 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+
+  # Disable the 'Are you sure?' confirmation dialog in tests
+  config.action_view.form_with_generates_remote_forms = false
 end
