@@ -1,12 +1,14 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @customer %>
+<h2>Full name: <%= @customer.full_name %></h2>
+<p><strong>Phone:</strong> <%= @customer.phone %></p>
+<p><strong>Email:</strong> <%= @customer.email %></p>
 
 <div>
   <%= link_to "Edit this customer", edit_customer_path(@customer) %> |
   <%= link_to "Back to customers", customers_path %>
 
-  <%= button_to "Destroy this customer", @customer, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= button_to "Destroy this customer", @customer, method: :delete, data: { confirm: 'Are you sure?' }, class: "button danger" %>
 </div>
 
 <h2>Orders</h2>
