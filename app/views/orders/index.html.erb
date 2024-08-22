@@ -8,7 +8,6 @@
       <th>Product</th>
       <th>Quantity</th>
       <th>Customer</th>
-      <th>Manage</th>
     </tr>
   </thead>
   <tbody>
@@ -17,10 +16,9 @@
         <td><%= order.product_name %></td>
         <td><%= order.product_count %></td>
         <td><%= order.customer.full_name %></td>
-        <td>
-          <%= link_to "Show", order_path(order) %> |
-          <%= link_to "Edit", edit_order_path(order) %> |
-          <%= link_to "Delete", order_path(order), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <td><%= button_to "Show", order_path(order), method: :get %></td>
+        <td><%= button_to "Edit", edit_order_path(order), method: :get %></td>
+        <td><%= button_to "Delete", order_path(order), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </td>
       </tr>
     <% end %>
