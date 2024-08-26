@@ -1,9 +1,14 @@
 @import "bootstrap";
 
 :root {
-  --bs-body-bg: #E8F3EC;
+  --bs-body-bg: #E1F6F1;
 }
 
 .my_alert {
   color: red;
+}
+
+.banner-background {
+  background-image: image-url('banner.png');
+  background-size: cover;
 }
