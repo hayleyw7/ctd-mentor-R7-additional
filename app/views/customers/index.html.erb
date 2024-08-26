@@ -14,9 +14,9 @@
       <tr>
         <td><%= customer.full_name %></td>
         <td><%= customer.orders.count %></td>
-        <td><%= button_to "Show", customer_path(customer), method: :get %></td>
-        <td><%= button_to "Edit", edit_customer_path(customer), method: :get %></td>
-        <td><%= button_to "Delete", customer_path(customer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to "Show", customer_path(customer), method: :get, class: "btn btn-primary" %></td>
+        <td><%= button_to "Edit", edit_customer_path(customer), method: :get, class: "btn btn-primary" %></td>
+        <td><%= button_to "Delete", customer_path(customer), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>

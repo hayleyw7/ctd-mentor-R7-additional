@@ -8,7 +8,7 @@
   <%= link_to "Edit this customer", edit_customer_path(@customer) %> |
   <%= link_to "Back to customers", customers_path %>
 
-  <%= button_to "Destroy this customer", @customer, method: :delete, data: { confirm: 'Are you sure?' }, class: "button danger" %>
+  <%= button_to "Destroy this customer", @customer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
 </div>
 
 <h2>Orders</h2>
@@ -26,9 +26,9 @@
         <tr>
           <td><%= order.product_name %></td>
           <td><%= order.product_count %></td>
-          <td><%= button_to 'Show', order_path(order), method: :get %></td>
-          <td><%= button_to 'Edit', edit_order_path(order), method: :get %></td>
-          <td><%= button_to 'Delete', order_path(order), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= button_to 'Show', order_path(order), method: :get, class: 'btn btn-primary' %></td>
+          <td><%= button_to 'Edit', edit_order_path(order), method: :get, class: 'btn btn-primary' %></td>
+          <td><%= button_to 'Delete', order_path(order), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
         </tr>
       <% end %>
     </tbody>
