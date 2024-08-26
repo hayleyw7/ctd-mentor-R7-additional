@@ -3,15 +3,21 @@
   <head>
     <title>R7Additional</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <%= javascript_include_tag "rails-ujs", "data-turbo-track": "reload", defer: true %> <!-- Include Rails UJS -->
+    <%= javascript_include_tag "rails-ujs", "data-turbo-track": "reload", defer: true %>
   </head>
 
   <body>
+    <div class="mt-4 p-5 bg-primary text-white rounded">
+      <h1>Customers & Orders</h1>
+      <p>This is a sample application that associates orders with customers.</p>
+    </div>
+
     <% if flash[:alert].present? %>
       <p class="my_alert"><%= flash[:alert] %></p>
     <% end %>
