@@ -1,24 +1,24 @@
-<p style="color: green"><%= notice %></p>
+<p class="text-success"><%= notice %></p>
 
 <h2>Name: <%= @customer.full_name %></h2>
 <p><strong>Phone:</strong> <%= @customer.phone %></p>
 <p><strong>Email:</strong> <%= @customer.email %></p>
 
-<div>
-  <%= link_to "Edit this customer", edit_customer_path(@customer) %> |
-  <%= link_to "Back to customers", customers_path %>
-
+<div class="mb-3 d-flex gap-3">
+  <%= button_to "Edit this customer", edit_customer_path(@customer), method: :get, class: "btn btn-warning" %>
+  <%= button_to "Back to customers", customers_path, method: :get, class: "btn btn-secondary" %>
   <%= button_to "Destroy this customer", @customer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
 </div>
 
 <h2>Orders</h2>
 
 <% if @customer.orders.any? %>
-  <table>
-    <thead>
+  <table class="table table-borderless">
+    <thead class="table-light">
       <tr>
-        <th>Product</th>
-        <th>Quantity</th>
+      <th class="w-50">Product</th>
+      <th class="w-25">Quantity</th>
+      <th colspan="3" class="w-25"></th>
       </tr>
     </thead>
     <tbody>
@@ -27,12 +27,12 @@
           <td><%= order.product_name %></td>
           <td><%= order.product_count %></td>
           <td><%= button_to 'Show', order_path(order), method: :get, class: 'btn btn-primary' %></td>
-          <td><%= button_to 'Edit', edit_order_path(order), method: :get, class: 'btn btn-primary' %></td>
+          <td><%= button_to 'Edit', edit_order_path(order), method: :get, class: 'btn btn-warning' %></td>
           <td><%= button_to 'Delete', order_path(order), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% else %>
-  <p>This customer has no orders.</p>
+  <p class="text-muted">This customer has no orders.</p>
 <% end %>

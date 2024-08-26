@@ -2,9 +2,7 @@
 
 <%= render "form", customer: @customer %>
 
-<br>
-
-<div>
-  <%= link_to "Show this customer", @customer %> |
-  <%= link_to "Back to customers", customers_path %>
+<div class="d-flex gap-3">
+  <%= button_to "Show this customer", customer_path(@customer), method: :get, class: "btn btn-primary" %>
+  <%= button_to "Back to customers", customers_path, method: :get, class: "btn btn-secondary" %>
 </div>

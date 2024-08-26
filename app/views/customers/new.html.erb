@@ -2,8 +2,6 @@
 
 <%= render "form", customer: @customer %>
 
-<br>
-
 <div>
-  <%= link_to "Back to customers", customers_path %>
+  <%= button_to "Back to customers", customers_path, method: :get, class: "btn btn-secondary" %>
 </div>
