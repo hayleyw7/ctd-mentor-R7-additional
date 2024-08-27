@@ -1,3 +1,19 @@
+// variables
+
+$primary: #C0DEE7;
+$secondary: #F2F2F2;
+$success: #C7E7C0;
+$danger: #FFB5B5;
+$warning: #FBE89F; 
+$info: #B5E5E9;
+$light: #E8F8F5;
+$dark: #34495E;
+$white: #FFFFFF;
+$body-bg: #FDFCF3;
+$table-bg: $light;
+
+// imports
+
 @import "bootstrap";
 
 @font-face {
@@ -5,16 +21,72 @@
   src: font-url('Canterbury.ttf');
 }
 
-:root {
-  --bs-body-bg: #E1F6F1;
+// bs overrides
+
+.btn-primary {
+  background-color: $primary;
+  border-color: $primary;
 }
 
-.my_alert {
-  color: red;
+.btn-warning {
+  background-color: $warning;
+  border-color: $warning;
+}
+
+.btn-danger {
+  background-color: $danger;
+  border-color: $danger;
+}
+
+.btn-success {
+  background-color: $success;
+  border-color: $success;
+}
+
+.alert-danger {
+  background-color: $warning;
+  border-color: $warning;
+  color: $dark;
+}
+
+// custom
+
+a {
+  color: $dark !important;
+
+  &:hover {
+    color: lighten($dark, 20%) !important;
+  }
+}
+
+body {
+  background-color: $body-bg;
+  color: $dark;
 }
 
 .banner-background {
   background-image: image-url('banner.png');
   background-size: cover;
-  font-family: 'Canterbury';
+  background-position: bottom;
+
+  h1 {
+    font-family: 'Canterbury';
+    font-size: 300%;
+    font-weight: bold;
+  }
+}
+
+.form-control {
+  background-color: $white;
+}
+
+tr,
+th {
+  background-color: $info !important;
+}
+
+// alerts
+
+.my_alert {
+  color: $warning;
 }
