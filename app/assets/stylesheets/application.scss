@@ -76,7 +76,8 @@ button,
 // custom
 
 a,
-.nav-link {
+.nav-link,
+.dropdown-item {
   color: lighten($dark, 10%);
   text-decoration: none;
 
@@ -127,8 +128,10 @@ th {
 // forms
 
 .form-control,
-.form-select {
+.customer-dropdown,
+.customer.dropdown-toggle {
   background-color: $white !important;
+  border: 1px solid $primary !important;
 }
 
 // mobile

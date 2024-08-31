@@ -2,19 +2,17 @@
 
 <div class="card border-0 mt-3" id="<%= dom_id(order) %>">
   <div class="card-header bg-info fw-bold fs-5 border-0">
-    <%= link_to order.product_name, order_path(order) %>
+    <%= order.product_name.titleize %>
   </div>
   <div class="card-body bg-light mb-3 d-flex justify-content-between">
     <p class="card-text mb-0">
-      <span class="me-1">
-        <%= icon('fa-solid', 'user') %>
-      </span>
-      <%= link_to order.customer.full_name, customer_path(order.customer) %>
+      <%= link_to customer_path(order.customer), class: "d-inline-flex align-items-center" do %>
+        <span class="me-2"><%= icon('fa-solid', 'user') %></span>
+        <%= order.customer.full_name.titleize %>
+      <% end %>
     </p>
     <p class="card-text mb-0">
-      <span class="me-1">
-        <%= icon('fa-solid', 'star') %>
-      </span>
+      <span class="me-1"><%= icon('fa-solid', 'star') %></span>
       <%= order.product_count %>
     </p>
   </div>

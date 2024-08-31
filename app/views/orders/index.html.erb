@@ -1,4 +1,7 @@
-<h2 class="mb-1">Orders</h2>
+<h2 class="mb-1">
+  <span class="me-2"><%= icon('fa-solid', 'shopping-cart') %></span>
+  Orders
+</h2>
 
 <div class="container-fluid p-0">
   <div class="row">
@@ -6,13 +9,26 @@
       <div class="col-sm-12 col-md-6 col-lg-4">
         <div class="card border-0 mt-3">
           <div class="card-header bg-info fw-bold fs-5 border-0">
-            <%= link_to order.product_name, order_path(order) %>
+            <%= link_to order_path(order), class: "d-inline-flex align-items-center" do %>
+              <span class="me-2"><%= icon('fa-solid', 'receipt') %></span>
+              <%= order.product_name.titleize %>
+            <% end %>
           </div>
-          <div class="card-body bg-light">
-            <p class="card-text"><strong>Quantity:</strong> <%= order.product_count %></p>
-            <p class="card-text"><strong>Customer:</strong> <%= link_to order.customer.full_name, customer_path(order.customer) %></p>
+          <div class="card-body bg-light d-flex justify-content-between">
+            <p class="card-text mb-0">
+              <%= link_to customer_path(order.customer), class: "d-inline-flex align-items-center" do %>
+                <span class="me-2"><%= icon('fa-solid', 'user') %></span>
+                <%= order.customer.full_name.titleize %>
+              <% end %>
+            </p>
+            <p class="card-text mb-0">
+              <%= link_to order_path(order), class: "d-inline-flex align-items-center" do %>
+                <span class="me-2"><%= icon('fa-solid', 'star') %></span>
+                <%= order.product_count %>
+              <% end %>
+            </p>
           </div>
-          <div class="card-footer border-0 d-flex justify-content-between bg-info">
+          <div class="card-footer border-0 d-flex justify-content-end gap-3 bg-info">
             <%= button_to "Edit", edit_order_path(order), method: :get, class: "btn btn-warning btn-sm" %>
             <%= button_to "Delete", order_path(order), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
           </div>
@@ -22,4 +38,4 @@
   </div>
 </div>
 
-<%= button_to "New Order", new_order_path, method: :get, class: "btn btn-success mt-3" %>
+<%= button_to "Create Order", new_order_path, method: :get, class: "btn btn-success mt-3" %>

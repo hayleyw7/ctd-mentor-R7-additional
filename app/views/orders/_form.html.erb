@@ -12,7 +12,17 @@
 
   <div class="mb-3">
     <%= form.label :customer_id, "Customer", class: "form-label" %>
-    <%= form.collection_select :customer_id, Customer.all, :id, :full_name, { prompt: "Select a Customer" }, { class: "form-select" } %>
+    <div class="dropdown customer">
+      <button class="btn btn-light dropdown-toggle customer w-100 d-flex justify-content-between align-items-center" type="button" id="customerDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <%= @selected_customer_name || "Select Customer" %>
+      </button>
+      <ul class="dropdown-menu w-100" aria-labelledby="customerDropdown">
+        <% Customer.all.each do |customer| %>
+          <li><a class="dropdown-item" href="#" data-value="<%= customer.id %>"><%= customer.full_name.titleize %></a></li>
+        <% end %>
+      </ul>
+      <%= form.hidden_field :customer_id, id: "hiddenCustomerId" %>
+    </div>
   </div>
 
   <div class="mb-3">

@@ -1,17 +1,19 @@
 <h2 class="mb-3">
   <span class="me-1"><%= icon('fa-solid', 'user')%></span>
-  <%= @customer.full_name %>
+  <%= @customer.full_name.titleize %>
 </h2>
 
-<p>
-  <span class="me-1"><%= icon('fa-solid', 'phone')%></span> 
-  <%= @customer.phone %>
-</p>
+<div class="d-flex">
+  <p class="me-4">
+    <span class="me-1"><%= icon('fa-solid', 'phone')%></span> 
+    <%= @customer.phone %>
+  </p>
 
-<p>
-  <span class="me-1"><%= icon('fa-solid', 'envelope')%></span> 
-  <%= @customer.email %>
-</p>
+  <p>
+    <span class="me-1"><%= icon('fa-solid', 'envelope')%></span> 
+    <%= @customer.email %>
+  </p>
+</div>
 
 <div class="mb-3 d-flex gap-3">
   <%= button_to "Edit", edit_customer_path(@customer), method: :get, class: "btn btn-warning" %>
@@ -20,10 +22,10 @@
 </div>
 
 <div class="border-top border-secondary border-5 mt-4 pt-3">
-  <h2>
+  <h4 class="mb-3">
     <span class="me-1"><%= icon('fa-solid', 'shopping-cart')%></span>
     Orders
-  </h2>
+  </h4>
 
   <% if @customer.orders.any? %>
     <div class="table-responsive border-0 rounded">
@@ -41,11 +43,14 @@
               <td class="align-middle ps-3">
                 <a href="<%= order_path(order) %>">
                   <span class="me-1"><%= icon('fa-solid', 'receipt')%></span>
-                  <%= order.product_name %>
+                  <%= order.product_name.titleize %>
                 </a>
               </td>
               <td class="align-middle">
-                <a href="<%= order_path(order) %>"><%= order.product_count %></a>
+                <%= link_to order_path(order), class: "d-inline-flex align-items-center" do %>
+                  <span class="me-2"><%= icon('fa-solid', 'star') %></span>
+                  <%= order.product_count %>
+                <% end %>
               </td>
               <td class="align-middle" style="width: 5%;">
                 <%= button_to 'Edit', edit_order_path(order), method: :get, class: 'btn btn-warning btn-sm' %>

@@ -1,4 +1,7 @@
-<h2 class="mb-3">Customers</h2>
+<h2 class="mb-3">
+  <span class="me-1"><%= icon('fa-solid', 'users')%></span>
+  Customers
+</h2>
 
 <div class="table-responsive border-0 rounded">
   <table class="table table-borderless">
@@ -13,10 +16,17 @@
       <% @customers.each do |customer| %>
         <tr>
           <td class="align-middle ps-3">
-            <span class="me-1"><%= icon('fa-solid', 'user')%></span>
-            <%= link_to customer.full_name, customer_path(customer), class: "text-decoration-none" %>
+            <%= link_to customer_path(customer), class: "d-inline-flex align-items-center" do %>
+              <span class="me-2"><%= icon('fa-solid', 'user')%></span>
+              <%= customer.full_name.titleize %>
+            <% end %>
           </td>
-          <td class="align-middle"><%= link_to customer.orders.count, customer_path(customer), class: "text-decoration-none" %></td>
+          <td class="align-middle">
+            <%= link_to customer_path(customer), class: "d-inline-flex align-items-center" do %>
+              <span class="me-2"><%= icon('fa-solid', 'receipt')%></span>
+              <%= customer.orders.count %>
+            <% end %>
+          </td>
           <td class="align-middle" style="width: 5%;"><%= button_to "Edit", edit_customer_path(customer), method: :get, class: "btn btn-warning btn-sm" %></td>
           <td class="align-middle pe-3" style="width: 5%;"><%= button_to "Delete", customer_path(customer), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm delete-btn" %></td>
         </tr>
@@ -25,4 +35,4 @@
   </table>
 </div>
 
-<%= button_to "New customer", new_customer_path, class: "btn btn-success", method: :get %>
+<%= button_to "Create Customer", new_customer_path, class: "btn btn-success", method: :get %>
