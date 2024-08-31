@@ -1,0 +1,21 @@
+<div class="modal fade" id="<%= "myModal-#{customer.id}" %>" tabindex="-1" aria-labelledby="myModalLabel-<%= customer.id %>" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header bg-warning">
+        <h4 class="modal-title" id="myModalLabel-<%= customer.id %>">DOUBLE CHECKING</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body pb-0">
+        <p>Are you sure that you want to permanently delete <%= customer.full_name.titleize %> and their <%= customer.orders.count.to_s %> order(s)? <span class="fw-bold">This cannot be undone.</span></p>
+      </div>
+
+      <div class="modal-footer bg-light">
+        <%= button_to("Delete", destroy_with_orders_customer_path(customer.id), method: :delete, class: "btn btn-danger", data: { "bs-dismiss" => "modal" }) %>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">WAIT! NO! CANCEL!</button>
+      </div>
+
+    </div>
+  </div>
+</div>

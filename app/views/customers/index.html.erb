@@ -27,9 +27,16 @@
               <%= customer.orders.count %>
             <% end %>
           </td>
-          <td class="t-btn"<%= button_to "Edit", edit_customer_path(customer), method: :get, class: "btn btn-warning btn-sm" %></td>
-          <td class="t-btn pe-3"><%= button_to "Delete", customer_path(customer), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm delete-btn" %></td>
+          <td class="t-btn"><%= button_to "Edit", edit_customer_path(customer), method: :get, class: "btn btn-warning btn-sm" %></td>
+          <td class="t-btn pe-3">
+            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#myModal-<%= customer.id %>">
+              Delete
+            </button>
+          </td>
         </tr>
+
+        <%= render 'deleteModal', customer: customer %>
+
       <% end %>
     </tbody>
   </table>
