@@ -12,7 +12,9 @@
       </div>
 
       <div class="modal-footer bg-light">
-        <%= button_to("Delete", destroy_with_orders_customer_path(customer.id), method: :delete, class: "btn btn-danger", data: { "bs-dismiss" => "modal" }) %>
+        <%= form_with url: customer_path(customer), method: :delete, local: true do %>
+          <%= submit_tag "Delete", class: "btn btn-danger" %>
+        <% end %>
         <button type="button" class="btn btn-success" data-bs-dismiss="modal">WAIT! NO! CANCEL!</button>
       </div>
 

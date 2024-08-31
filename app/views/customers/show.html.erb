@@ -18,8 +18,13 @@
 <div class="mb-3 d-flex gap-3">
   <%= button_to "Edit", edit_customer_path(@customer), method: :get, class: "btn btn-warning" %>
   <%= button_to "All Customers", customers_path, method: :get, class: "btn btn-primary" %>
-  <%= button_to "Delete", @customer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+
+  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal-<%= @customer.id %>">
+    Delete
+  </button>
 </div>
+
+<%= render 'deleteModal', customer: @customer %>
 
 <div class="border-top border-secondary border-5 mt-4 pt-3">
   <h4 class="mb-3">

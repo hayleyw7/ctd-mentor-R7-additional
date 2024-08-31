@@ -5,5 +5,10 @@
 <div class="d-flex gap-3 justify-content-end">
   <%= button_to "View", customer_path(@customer), method: :get, class: "btn btn-warning" %>
   <%= button_to "All Customers", customers_path, method: :get, class: "btn btn-primary" %>
-  <%= button_to "Delete", customer_path(@customer), method: :delete, data: { confirm: "Are you sure you want to delete this customer?" }, class: "btn btn-danger" %>
+
+  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal-<%= @customer.id %>">
+    Delete
+  </button>
 </div>
+
+<%= render 'deleteModal', customer: @customer %>

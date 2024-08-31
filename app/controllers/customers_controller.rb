@@ -43,19 +43,26 @@ class CustomersController < ApplicationController
   end
 
   # DELETE /customers/1 or /customers/1.json
-  def destroy
-    begin
-      @customer.destroy
-      flash.notice = "The customer record was successfully deleted."
-    rescue ActiveRecord::InvalidForeignKey
-      flash.alert = "That customer record could not be deleted, because the customer has orders."
-    end
 
-    respond_to do |format|
-      format.html { redirect_to customers_url }
-      format.json { head :no_content }
+def destroy
+  begin
+    @customer.transaction do
+      @customer.orders.destroy_all if @customer.orders.exists?
+      @customer.destroy!
     end
+    flash.notice = "The customer record and all related order records were successfully deleted."
+  rescue ActiveRecord::InvalidForeignKey
+    flash.alert = "The customer record could not be deleted due to associated records."
+  rescue ActiveRecord::RecordNotDestroyed
+    flash.alert = "The customer record could not be deleted."
   end
+
+  respond_to do |format|
+    format.html { redirect_to customers_url }
+    format.json { head :no_content }
+  end
+end
+
 
   private
 

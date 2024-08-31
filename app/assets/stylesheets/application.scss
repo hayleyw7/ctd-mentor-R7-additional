@@ -35,6 +35,7 @@ button,
   color: $dark !important;
   border: none !important;
 }
+
 .btn-primary,
 .alert-primary {
   background-color: $primary !important;
@@ -64,6 +65,20 @@ body {
 
 h2 {
   margin-bottom: 20px;
+}
+
+// alerts
+
+.alert {
+  h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px; 
+  }
+
+  ul {
+    margin-bottom: 0;
+  }
 }
 
 // btns
