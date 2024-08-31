@@ -1,6 +1,6 @@
-<%= form_with(model: order) do |form| %>
+<%= form_with(model: order, local: true, class: "mb-3") do |form| %>
   <% if order.errors.any? %>
-    <div style="color: red">
+    <div class="alert alert-danger">
       <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
       <ul>
         <% order.errors.each do |error| %>
@@ -10,22 +10,39 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :customer_id, "Customer", style: "display: block" %>
-    <%= form.collection_select :customer_id, Customer.all, :id, :full_name, prompt: "Select a Customer" %>
+  <div class="mb-3">
+    <span class="me-1"><%= icon('fa-solid', 'user')%></span>
+    <%= form.label :customer_id, "Customer", class: "form-label" %>
+    <div class="dropdown customer">
+      <button class="btn btn-light dropdown-toggle customer w-100 d-flex justify-content-between align-items-center" type="button" id="customerDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <%= order.customer&.full_name&.titleize || "Select Customer" %>
+      </button>
+      <ul class="dropdown-menu w-100" aria-labelledby="customerDropdown">
+        <% Customer.all.each do |customer| %>
+          <li>
+            <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('hiddenCustomerId').value = '<%= customer.id %>'; document.getElementById('customerDropdown').innerText = '<%= customer.full_name.titleize %>';">
+              <%= customer.full_name.titleize %>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+      <%= form.hidden_field :customer_id, id: "hiddenCustomerId", value: order.customer_id %>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :product_name, style: "display: block" %>
-    <%= form.text_field :product_name %>
+  <div class="mb-3">
+    <span class="me-1"><%= icon('fa-solid', 'receipt')%></span>
+    <%= form.label :product_name, "Product", class: "form-label" %>
+    <%= form.text_field :product_name, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :product_count, style: "display: block" %>
-    <%= form.number_field :product_count, value: order.product_count || 1, min: 1 %>
+  <div class="mb-3">
+    <span class="me-1"><%= icon('fa-solid', 'star')%></span>
+    <%= form.label :product_count, "Quantity", class: "form-label" %>
+    <%= form.number_field :product_count, value: order.product_count || 1, min: 1, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="mb-3">
+    <%= form.submit "Save", class: "btn btn-success" %>
   </div>
 <% end %>

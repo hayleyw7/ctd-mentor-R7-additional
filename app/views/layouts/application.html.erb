@@ -1,21 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>R7Additional</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <%= javascript_include_tag "rails-ujs", "data-turbo-track": "reload", defer: true %> <!-- Include Rails UJS -->
+    <%= javascript_include_tag "rails-ujs", "data-turbo-track": "reload", defer: true %>
   </head>
 
   <body>
-    <% if flash[:alert].present? %>
-      <p class="my_alert"><%= flash[:alert] %></p>
+    <div class="p-3 banner-background">
+      <h1 class="mb-5">Customers & Orders</h1>
+    </div>
+
+    <nav class="navbar navbar-expand-sm bg-light mb-3">
+      <div class="container-fluid ps-3">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle ps-0" href="#" id="customersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Customers
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="customersDropdown">
+              <li><a class="dropdown-item" href="/customers/new">Create Customer</a></li>
+              <li><a class="dropdown-item" href="/customers">View All</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="ordersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Orders
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="ordersDropdown">
+              <li><a class="dropdown-item" href="/orders/new">Create Order</a></li>
+              <li><a class="dropdown-item" href="/orders">View All</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key == 'notice' ? 'success' : 'danger' %> alert-dismissible fade show p-3 m-3" role="alert">
+        <%= value %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
     <% end %>
 
-    <%= yield %>
+    <div class="container-fluid ps-3 pe-3">
+      <%= yield %>
+    </div>
   </body>
 </html>

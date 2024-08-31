@@ -1,38 +1,78 @@
-<p style="color: green"><%= notice %></p>
+<h2 class="mb-3">
+  <span class="me-1"><%= icon('fa-solid', 'user') %></span>
+  <%= @customer.full_name.titleize %>
+</h2>
 
-<h2>Full name: <%= @customer.full_name %></h2>
-<p><strong>Phone:</strong> <%= @customer.phone %></p>
-<p><strong>Email:</strong> <%= @customer.email %></p>
+<div class="d-flex">
+  <p class="me-4">
+    <span class="me-1"><%= icon('fa-solid', 'phone') %></span> 
+    <%= @customer.phone %>
+  </p>
 
-<div>
-  <%= link_to "Edit this customer", edit_customer_path(@customer) %> |
-  <%= link_to "Back to customers", customers_path %>
-
-  <%= button_to "Destroy this customer", @customer, method: :delete, data: { confirm: 'Are you sure?' }, class: "button danger" %>
+  <p>
+    <span class="me-1"><%= icon('fa-solid', 'envelope') %></span> 
+    <%= @customer.email %>
+  </p>
 </div>
 
-<h2>Orders</h2>
+<div class="mb-3 d-flex gap-3">
+  <%= button_to "Edit", edit_customer_path(@customer), method: :get, class: "btn btn-warning" %>
+  <%= button_to "All Customers", customers_path, method: :get, class: "btn btn-primary" %>
 
-<% if @customer.orders.any? %>
-  <table>
-    <thead>
-      <tr>
-        <th>Product</th>
-        <th>Quantity</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @customer.orders.each do |order| %>
-        <tr>
-          <td><%= order.product_name %></td>
-          <td><%= order.product_count %></td>
-          <td><%= button_to 'Show', order_path(order), method: :get %></td>
-          <td><%= button_to 'Edit', edit_order_path(order), method: :get %></td>
-          <td><%= button_to 'Delete', order_path(order), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <p>This customer has no orders.</p>
-<% end %>
+  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal-<%= @customer.id %>">
+    Delete
+  </button>
+</div>
+
+<%= render 'deleteModal', customer: @customer %>
+
+<div class="border-top border-secondary border-5 mt-4 pt-3">
+  <h4 class="mb-3">
+    <span class="me-1"><%= icon('fa-solid', 'shopping-cart') %></span>
+    Orders
+  </h4>
+
+  <% if @customer.orders.any? %>
+    <div class="table-responsive border-0 rounded">
+      <table class="table table-borderless">
+        <thead class="table-light">
+          <tr>
+            <th class="w-50 ps-3">Product</th>
+            <th class="w-25">Quantity</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @customer.orders.each do |order| %>
+            <tr>
+              <td class="align-middle ps-3">
+                <a href="<%= order_path(order) %>">
+                  <span class="me-1"><%= icon('fa-solid', 'receipt') %></span>
+                  <%= order.product_name.titleize %>
+                </a>
+              </td>
+              <td class="align-middle">
+                <%= link_to order_path(order), class: "d-inline-flex align-items-center" do %>
+                  <span class="me-2"><%= icon('fa-solid', 'star') %></span>
+                  <%= order.product_count %>
+                <% end %>
+              </td>
+              <td class="t-btn">
+                <%= button_to 'Edit', edit_order_path(order), method: :get, class: 'btn btn-warning btn-sm' %>
+              </td>
+              <td class="t-btn pe-3">
+                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal-<%= order.id %>">
+                  Delete
+                </button>
+              </td>
+            </tr>
+
+            <%= render 'deleteModal', customer: @customer %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <p>No orders found.</p>
+  <% end %>
+</div>

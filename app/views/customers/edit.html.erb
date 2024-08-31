@@ -1,10 +1,14 @@
-<h1>Editing customer</h1>
+<h2>Edit Customer</h2>
 
 <%= render "form", customer: @customer %>
 
-<br>
+<div class="d-flex gap-3 justify-content-end">
+  <%= button_to "View", customer_path(@customer), method: :get, class: "btn btn-warning" %>
+  <%= button_to "All Customers", customers_path, method: :get, class: "btn btn-primary" %>
 
-<div>
-  <%= link_to "Show this customer", @customer %> |
-  <%= link_to "Back to customers", customers_path %>
+  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal-<%= @customer.id %>">
+    Delete
+  </button>
 </div>
+
+<%= render 'deleteModal', customer: @customer %>

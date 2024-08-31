@@ -1,25 +1,45 @@
-<p style="color: green"><%= notice %></p>
+<h2 class="mb-3">
+  <span class="me-1"><%= icon('fa-solid', 'users')%></span>
+  Customers
+</h2>
 
-<h1>Customers</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Orders</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @customers.each do |customer| %>
+<div class="table-responsive border-0 rounded">
+  <table class="table table-borderless">
+    <thead class="table-light fs-5">
       <tr>
-        <td><%= customer.full_name %></td>
-        <td><%= customer.orders.count %></td>
-        <td><%= button_to "Show", customer_path(customer), method: :get %></td>
-        <td><%= button_to "Edit", edit_customer_path(customer), method: :get %></td>
-        <td><%= button_to "Delete", customer_path(customer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th class="w-50 ps-3">Name</th>
+        <th class="w-25">Orders</th>
+        <th colspan="2"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @customers.each do |customer| %>
+        <tr>
+          <td class="align-middle ps-3">
+            <%= link_to customer_path(customer), class: "d-inline-flex align-items-center" do %>
+              <span class="me-2"><%= icon('fa-solid', 'user')%></span>
+              <%= customer.full_name.titleize %>
+            <% end %>
+          </td>
+          <td class="align-middle">
+            <%= link_to customer_path(customer), class: "d-inline-flex align-items-center" do %>
+              <span class="me-2"><%= icon('fa-solid', 'receipt')%></span>
+              <%= customer.orders.count %>
+            <% end %>
+          </td>
+          <td class="t-btn"><%= button_to "Edit", edit_customer_path(customer), method: :get, class: "btn btn-warning btn-sm" %></td>
+          <td class="t-btn pe-3">
+            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#myModal-<%= customer.id %>">
+              Delete
+            </button>
+          </td>
+        </tr>
 
-<%= link_to "New customer", new_customer_path %>
+        <%= render 'deleteModal', customer: customer %>
+
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= button_to "Create Customer", new_customer_path, class: "btn btn-success", method: :get %>

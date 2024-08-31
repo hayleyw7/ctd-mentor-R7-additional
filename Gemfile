@@ -48,6 +48,9 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+gem 'bootstrap', '~> 5.1.0'
+gem 'popper_js', '~> 2.9'
+
 # assignment
 gem 'email_validator'
 
@@ -80,3 +83,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "font-awesome-sass", "~> 6.5"

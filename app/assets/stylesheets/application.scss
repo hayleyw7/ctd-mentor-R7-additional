@@ -1,0 +1,169 @@
+// variables
+
+$primary: #C0DEE7;
+$secondary: #F2F2F2;
+$success: #C7E7C0;
+$danger: #FFB5B5;
+$warning: #FBE89F; 
+$info: #B5E5E9;
+$light: #E8F8F5;
+$dark: #34495E;
+$white: #FFFFFF;
+$body-bg: #FDFCF3;
+$table-bg: $light;
+
+@mixin btn-hover($color) {
+  &:hover {
+    background-color: lighten($color, 5%) !important;
+  }
+}
+
+// imports
+
+@import "bootstrap";
+@import "font-awesome";
+
+@font-face {
+  font-family: 'Canterbury';
+  src: font-url('Canterbury.ttf');
+}
+
+// bs color overrides
+
+button,
+.alert {
+  color: $dark !important;
+  border: none !important;
+}
+
+.btn-primary,
+.alert-primary {
+  background-color: $primary !important;
+}
+
+.btn-warning,
+.alert-warning {
+  background-color: $warning !important;
+}
+
+.btn-danger,
+.alert-danger {
+  background-color: $danger !important;
+}
+
+.btn-success,
+.alert-success {
+  background-color: $success !important;
+}
+
+// general
+
+body {
+  background-color: $body-bg;
+  color: $dark;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+// alerts
+
+.alert {
+  h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px; 
+  }
+
+  ul {
+    margin-bottom: 0;
+  }
+}
+
+// btns
+
+.btn {
+  color: $dark !important;
+}
+
+.btn-primary {
+  @include btn-hover($primary);
+}
+
+.btn-warning {
+  @include btn-hover($warning);
+}
+
+.btn-danger {
+  @include btn-hover($danger);
+}
+
+.btn-success {
+  @include btn-hover($success);
+}
+
+// links
+
+a,
+.nav-link,
+.dropdown-item {
+  color: lighten($dark, 10%);
+  text-decoration: none;
+
+  &:hover {
+    color: lighten($dark, 30%);
+  }
+}
+
+.dropdown-item:hover {
+  background-color: white;
+}
+
+// banner
+
+.banner-background {
+  background-image: image-url('banner.png');
+  background-size: cover;
+  background-position: bottom;
+
+  h1 {
+    font-family: 'Canterbury';
+    font-size: 300%;
+    font-weight: bold;
+  }
+}
+
+// cards
+
+.card {
+  background-color: $body-bg;
+}
+
+// tables
+
+tr,
+th {
+  background-color: $info !important;
+}
+
+.t-btn {
+  width: 5%;
+}
+
+// forms
+
+.form-control,
+.customer-dropdown,
+.customer.dropdown-toggle {
+  background-color: $white !important;
+  border: 1px solid $primary !important;
+}
+
+// mobile
+
+@media (max-width: 560px) {
+  th {
+    font-size: 16px;
+  }
+}
