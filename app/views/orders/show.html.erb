@@ -3,5 +3,9 @@
 <div class="d-flex gap-3">
   <%= button_to "Edit", edit_order_path(@order), method: :get, class: "btn btn-warning" %>
   <%= button_to "All Orders", orders_path, method: :get, class: "btn btn-primary" %>
-  <%= button_to "Delete", @order, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-<%= dom_id(@order) %>">
+    Delete
+  </button>
 </div>
+
+<%= render 'deleteModalOrder', order: @order %>

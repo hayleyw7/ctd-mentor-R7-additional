@@ -5,5 +5,9 @@
 <div class="d-flex gap-3 justify-content-end">
   <%= button_to "View", order_path(@order), method: :get, class: "btn btn-warning" %>
   <%= button_to "All Orders", orders_path, method: :get, class: "btn btn-primary" %>
-  <%= button_to "Delete", order_path(@order), method: :delete, data: { confirm: "Are you sure you want to delete this order?" }, class: "btn btn-danger" %>
+  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-<%= dom_id(@order) %>">
+    Delete
+  </button>
 </div>
+
+<%= render 'deleteModalOrder', order: @order %>

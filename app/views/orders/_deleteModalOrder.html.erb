@@ -1,0 +1,19 @@
+<div class="modal fade" id="deleteModal-<%= dom_id(order) %>" tabindex="-1" aria-labelledby="deleteModalLabel-<%= order.id %>" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-warning">
+        <h5 class="modal-title" id="deleteModalLabel-<%= order.id %>">Confirm Deletion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body pb-0">
+        <p>Are you sure you want to permanently delete this order? <span class="fw-bold">This action cannot be undone.</span></p>
+      </div>
+      <div class="modal-footer bg-light">
+        <%= form_with url: order_path(order), method: :delete, local: true do %>
+          <%= submit_tag "Delete", class: "btn btn-danger" %>
+        <% end %>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

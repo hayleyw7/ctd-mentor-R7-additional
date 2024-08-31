@@ -30,12 +30,16 @@
           </div>
           <div class="card-footer border-0 d-flex justify-content-end gap-3 bg-info">
             <%= button_to "Edit", edit_order_path(order), method: :get, class: "btn btn-warning btn-sm" %>
-            <%= button_to "Delete", order_path(order), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal-<%= dom_id(order) %>">
+              Delete
+            </button>
           </div>
         </div>
       </div>
+      <!-- Render the delete modal for each order -->
+      <%= render 'deleteModalOrder', order: order %>
     <% end %>
   </div>
 </div>
 
-<%= button_to "Create Order", new_order_path, method: :get, class: "btn btn-success mt-3" %>
+<%= button_to "Create Order", new_order_path, method: :get, class: "btn btn-success mt-3 mb-3" %>
