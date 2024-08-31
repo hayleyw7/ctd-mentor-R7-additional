@@ -43,8 +43,11 @@
       </div>
     </nav>
 
-    <% if flash[:alert].present? %>
-      <p class="my_alert"><%= flash[:alert] %></p>
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key == 'notice' ? 'success' : 'danger' %> alert-dismissible fade show" role="alert">
+        <%= value %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
     <% end %>
 
     <div class="container-fluid">

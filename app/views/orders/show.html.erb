@@ -1,9 +1,7 @@
-<p class="text-success"><%= notice %></p>
-
 <%= render @order %>
 
 <div class="d-flex gap-3">
-  <%= button_to "Edit this order", edit_order_path(@order), method: :get, class: "btn btn-warning" %>
-  <%= button_to "Back to orders", orders_path, method: :get, class: "btn btn-secondary" %>
-  <%= button_to "Destroy this order", @order, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  <%= button_to "Edit", edit_order_path(@order), method: :get, class: "btn btn-warning" %>
+  <%= button_to "Back", orders_path, method: :get, class: "btn btn-secondary" %>
+  <%= button_to "Delete", @order, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
 </div>

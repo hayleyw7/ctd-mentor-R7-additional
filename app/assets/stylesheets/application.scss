@@ -19,33 +19,35 @@ $table-bg: $light;
 @font-face {
   font-family: 'Canterbury';
   src: font-url('Canterbury.ttf');
+}v
+
+// bs color overrides
+
+.btn-primary,
+.alert-primary {
+  background-color: $primary !important;
+  border: none;
+  color: $dark;
 }
 
-// bs overrides
-
-.btn-primary {
-  background-color: $primary;
-  border-color: $primary;
+.btn-warning,
+.alert-warning {
+  background-color: $warning !important;
+  border: none;
+  color: $dark;
 }
 
-.btn-warning {
-  background-color: $warning;
-  border-color: $warning;
-}
-
-.btn-danger {
-  background-color: $danger;
-  border-color: $danger;
-}
-
-.btn-success {
-  background-color: $success;
-  border-color: $success;
-}
-
+.btn-danger,
 .alert-danger {
-  background-color: $warning;
-  border-color: $warning;
+  background-color: $danger !important;
+  border: none;
+  color: $dark;
+}
+
+.btn-success,
+.alert-success {
+  background-color: $success !important;
+  border: none;
   color: $dark;
 }
 
@@ -85,27 +87,10 @@ th {
   background-color: $info !important;
 }
 
-// alerts
-
-.my_alert {
-  color: $warning;
-}
-
 // mobile
 
 @media (max-width: 560px) {
   th {
     font-size: 16px;
-  }
-
-  .delete-btn {
-    font-size: 0;
-    width: 31px;
-    height: 31px;
-  }
-
-  .delete-btn::before {
-    font-size: 14px;
-    content: "X";
   }
 }

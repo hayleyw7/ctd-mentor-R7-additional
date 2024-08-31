@@ -3,6 +3,6 @@
 <%= render "form", customer: @customer %>
 
 <div class="d-flex gap-3">
-  <%= button_to "Show this customer", customer_path(@customer), method: :get, class: "btn btn-primary" %>
-  <%= button_to "Back to customers", customers_path, method: :get, class: "btn btn-secondary" %>
+  <%= button_to "Show", customer_path(@customer), method: :get, class: "btn btn-primary" %>
+  <%= button_to "Back", customers_path, method: :get, class: "btn btn-secondary" %>
 </div>
