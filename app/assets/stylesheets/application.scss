@@ -15,11 +15,12 @@ $table-bg: $light;
 // imports
 
 @import "bootstrap";
+@import "font-awesome";
 
 @font-face {
   font-family: 'Canterbury';
   src: font-url('Canterbury.ttf');
-}v
+}
 
 // bs color overrides
 
@@ -54,11 +55,16 @@ $table-bg: $light;
 // custom
 
 a {
-  color: $dark !important;
+  color: lighten($dark, 10%) !important;
+  text-decoration: none;
 
   &:hover {
-    color: lighten($dark, 20%) !important;
+    color: lighten($dark, 30%) !important;
   }
+}
+
+.dropdown-item:hover {
+  background-color: white;
 }
 
 body {

@@ -16,7 +16,7 @@
       <table class="table table-borderless">
         <thead class="table-light">
           <tr>
-            <th class="w-50">Product</th>
+            <th class="w-50 ps-3">Product</th>
             <th class="w-25">Quantity</th>
             <th colspan="2"></th> <!-- Combined columns for Edit and Delete -->
           </tr>
@@ -24,16 +24,24 @@
         <tbody>
           <% @customer.orders.each do |order| %>
             <tr>
-              <td class="align-middle"><%= order.product_name %></td>
-              <td class="align-middle"><%= order.product_count %></td>
-              <td class="align-middle" style="width: 5%;"><%= button_to 'Edit', edit_order_path(order), method: :get, class: 'btn btn-warning btn-sm' %></td>
-              <td class="align-middle" style="width: 5%;"><%= button_to 'Delete', order_path(order), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm delete-btn' %></td>
+              <td class="align-middle ps-3">
+                <a href="<%= order_path(order) %>"><%= order.product_name %></a>
+              </td>
+              <td class="align-middle">
+                <a href="<%= order_path(order) %>"><%= order.product_count %></a>
+              </td>
+              <td class="align-middle" style="width: 5%;">
+                <%= button_to 'Edit', edit_order_path(order), method: :get, class: 'btn btn-warning btn-sm' %>
+              </td>
+              <td class="align-middle pe-3" style="width: 5%;">
+                <%= button_to 'Delete', order_path(order), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+              </td>
             </tr>
           <% end %>
         </tbody>
       </table>
     </div>
   <% else %>
-    <p class="text-muted">This customer has no orders.</p>
+    <p>No orders found.</p>
   <% end %>
 </div>

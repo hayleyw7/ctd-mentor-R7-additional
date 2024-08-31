@@ -83,3 +83,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "font-awesome-sass", "~> 6.5"
