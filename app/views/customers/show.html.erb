@@ -52,10 +52,10 @@
                   <%= order.product_count %>
                 <% end %>
               </td>
-              <td class="align-middle" style="width: 5%;">
+              <td class="t-btn">
                 <%= button_to 'Edit', edit_order_path(order), method: :get, class: 'btn btn-warning btn-sm' %>
               </td>
-              <td class="align-middle pe-3" style="width: 5%;">
+              <td class="t-btn pe-3">
                 <%= button_to 'Delete', order_path(order), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
               </td>
             </tr>

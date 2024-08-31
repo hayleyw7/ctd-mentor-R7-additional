@@ -55,7 +55,22 @@ button,
   background-color: $success !important;
 }
 
-// btn hovers
+// general
+
+body {
+  background-color: $body-bg;
+  color: $dark;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+// btns
+
+.btn {
+  color: $dark !important;
+}
 
 .btn-primary {
   @include btn-hover($primary);
@@ -73,7 +88,7 @@ button,
   @include btn-hover($success);
 }
 
-// custom
+// links
 
 a,
 .nav-link,
@@ -86,22 +101,11 @@ a,
   }
 }
 
-.btn {
-  color: $dark !important;
-}
-
 .dropdown-item:hover {
   background-color: white;
 }
 
-body {
-  background-color: $body-bg;
-  color: $dark;
-}
-
-h2 {
-  margin-bottom: 20px;
-}
+// banner
 
 .banner-background {
   background-image: image-url('banner.png');
@@ -115,14 +119,21 @@ h2 {
   }
 }
 
+// cards
+
+.card {
+  background-color: $body-bg;
+}
+
+// tables
 
 tr,
 th {
   background-color: $info !important;
 }
 
-.card {
-  background-color: $body-bg;
+.t-btn {
+  width: 5%;
 }
 
 // forms
