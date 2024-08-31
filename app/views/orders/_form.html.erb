@@ -11,6 +11,7 @@
   <% end %>
 
   <div class="mb-3">
+    <span class="me-1"><%= icon('fa-solid', 'user')%></span>
     <%= form.label :customer_id, "Customer", class: "form-label" %>
     <div class="dropdown customer">
       <button class="btn btn-light dropdown-toggle customer w-100 d-flex justify-content-between align-items-center" type="button" id="customerDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -26,11 +27,13 @@
   </div>
 
   <div class="mb-3">
+    <span class="me-1"><%= icon('fa-solid', 'receipt')%></span>
     <%= form.label :product_name, "Product", class: "form-label" %>
     <%= form.text_field :product_name, class: "form-control" %>
   </div>
 
   <div class="mb-3">
+    <span class="me-1"><%= icon('fa-solid', 'star')%></span>
     <%= form.label :product_count, "Quantity", class: "form-label" %>
     <%= form.number_field :product_count, value: order.product_count || 1, min: 1, class: "form-control" %>
   </div>
