@@ -90,3 +90,22 @@ th {
 .my_alert {
   color: $warning;
 }
+
+// mobile
+
+@media (max-width: 560px) {
+  th {
+    font-size: 16px;
+  }
+
+  .delete-btn {
+    font-size: 0;
+    width: 31px;
+    height: 31px;
+  }
+
+  .delete-btn::before {
+    font-size: 14px;
+    content: "X";
+  }
+}

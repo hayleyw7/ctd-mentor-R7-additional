@@ -2,27 +2,26 @@
 
 <h2>Orders</h2>
 
-<table class="table table-borderless">
-  <thead class="table-light">
-    <tr>
-      <th class="w-25">Product</th>
-      <th class="w-25">Quantity</th>
-      <th class="w-25">Customer</th>
-      <th colspan="3" class="w-25"></th>
-    </tr>
-  </thead>
-  <tbody>
+<div class="container-fluid">
+  <div class="row">
     <% @orders.each do |order| %>
-      <tr>
-        <td><%= order.product_name %></td>
-        <td><%= order.product_count %></td>
-        <td><%= link_to order.customer.full_name, customer_path(order.customer) %></td>
-        <td><%= button_to "Show", order_path(order), method: :get, class: "btn btn-primary btn-sm" %></td>
-        <td><%= button_to "Edit", edit_order_path(order), method: :get, class: "btn btn-warning btn-sm" %></td>
-        <td><%= button_to "Delete", order_path(order), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %></td>
-      </tr>
+      <div class="col-sm-12 col-md-6 col-lg-4">
+        <div class="card border-0 mt-3">
+          <div class="card-header bg-info fw-bold fs-5 border-0">
+            <%= link_to order.product_name, order_path(order) %>
+          </div>
+          <div class="card-body bg-light">
+            <p class="card-text"><strong>Quantity:</strong> <%= order.product_count %></p>
+            <p class="card-text"><strong>Customer:</strong> <%= link_to order.customer.full_name, customer_path(order.customer) %></p>
+          </div>
+          <div class="card-footer border-0 d-flex justify-content-between bg-info">
+            <%= button_to "Edit", edit_order_path(order), method: :get, class: "btn btn-warning btn-sm" %>
+            <%= button_to "Delete", order_path(order), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
 
-<%= button_to "New order", new_order_path, method: :get, class: "btn btn-success" %>
+<%= button_to "New Order", new_order_path, method: :get, class: "btn btn-success mt-3" %>
