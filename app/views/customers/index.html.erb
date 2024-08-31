@@ -2,7 +2,7 @@
 
 <div class="table-responsive border-0 rounded">
   <table class="table table-borderless">
-    <thead class="table-light fs-5 ">
+    <thead class="table-light fs-5">
       <tr>
         <th class="w-50">Name</th>
         <th class="w-25">Orders</th>
@@ -12,8 +12,8 @@
     <tbody>
       <% @customers.each do |customer| %>
         <tr>
-          <td><%= customer.full_name %></td>
-          <td><%= customer.orders.count %></td>
+          <td class="align-middle"><%= customer.full_name %></td>
+          <td class="align-middle"><%= customer.orders.count %></td>
           <td><%= button_to "Show", customer_path(customer), method: :get, class: "btn btn-primary btn-sm" %></td>
           <td><%= button_to "Edit", edit_customer_path(customer), method: :get, class: "btn btn-warning btn-sm" %></td>
           <td><%= button_to "Delete", customer_path(customer), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm delete-btn" %></td>
