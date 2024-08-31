@@ -8,30 +8,32 @@
   <%= button_to "Delete", @customer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
 </div>
 
-<h2>Orders</h2>
+<div class="border-top border-secondary border-5 mt-4 pt-3">
+  <h2>Orders</h2>
 
-<% if @customer.orders.any? %>
-  <div class="table-responsive border-0 rounded">
-    <table class="table table-borderless">
-      <thead class="table-light">
-        <tr>
-          <th class="w-50">Product</th>
-          <th class="w-25">Quantity</th>
-          <th colspan="2"></th> <!-- Combined columns for Edit and Delete -->
-        </tr>
-      </thead>
-      <tbody>
-        <% @customer.orders.each do |order| %>
+  <% if @customer.orders.any? %>
+    <div class="table-responsive border-0 rounded">
+      <table class="table table-borderless">
+        <thead class="table-light">
           <tr>
-            <td class="align-middle"><%= order.product_name %></td>
-            <td class="align-middle"><%= order.product_count %></td>
-            <td class="align-middle" style="width: 5%;"><%= button_to 'Edit', edit_order_path(order), method: :get, class: 'btn btn-warning btn-sm' %></td>
-            <td class="align-middle" style="width: 5%;"><%= button_to 'Delete', order_path(order), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm delete-btn' %></td>
+            <th class="w-50">Product</th>
+            <th class="w-25">Quantity</th>
+            <th colspan="2"></th> <!-- Combined columns for Edit and Delete -->
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-<% else %>
-  <p class="text-muted">This customer has no orders.</p>
-<% end %>
+        </thead>
+        <tbody>
+          <% @customer.orders.each do |order| %>
+            <tr>
+              <td class="align-middle"><%= order.product_name %></td>
+              <td class="align-middle"><%= order.product_count %></td>
+              <td class="align-middle" style="width: 5%;"><%= button_to 'Edit', edit_order_path(order), method: :get, class: 'btn btn-warning btn-sm' %></td>
+              <td class="align-middle" style="width: 5%;"><%= button_to 'Delete', order_path(order), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm delete-btn' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <p class="text-muted">This customer has no orders.</p>
+  <% end %>
+</div>
