@@ -12,22 +12,30 @@
   <% end %>
 
   <div class="mb-3">
-    <%= form.label :first_name, class: "form-label" %>
+    <%= form.label :first_name, class: "form-label" do %>
+      <%= :first_name.to_s.titleize %>
+    <% end %>
     <%= form.text_field :first_name, class: "form-control" %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :last_name, class: "form-label" %>
+    <%= form.label :last_name, class: "form-label" do %>
+      <%= :last_name.to_s.titleize %>
+    <% end %>
     <%= form.text_field :last_name, class: "form-control" %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :phone, class: "form-label" %>
+    <%= form.label :phone, class: "form-label" do %>
+      <%= :phone.to_s.titleize %>
+    <% end %>
     <%= form.text_field :phone, class: "form-control" %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :email, class: "form-label" %>
+    <%= form.label :email, class: "form-label" do %>
+      <%= :email.to_s.titleize %>
+    <% end %>
     <%= form.text_field :email, class: "form-control" %>
   </div>
 

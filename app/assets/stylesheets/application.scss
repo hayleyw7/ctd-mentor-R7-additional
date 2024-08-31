@@ -12,6 +12,12 @@ $white: #FFFFFF;
 $body-bg: #FDFCF3;
 $table-bg: $light;
 
+@mixin btn-hover($color) {
+  &:hover {
+    background-color: lighten($color, 5%) !important;
+  }
+}
+
 // imports
 
 @import "bootstrap";
@@ -24,43 +30,63 @@ $table-bg: $light;
 
 // bs color overrides
 
+button,
+.alert {
+  color: $dark !important;
+  border: none !important;
+}
 .btn-primary,
 .alert-primary {
   background-color: $primary !important;
-  border: none;
-  color: $dark;
 }
 
 .btn-warning,
 .alert-warning {
   background-color: $warning !important;
-  border: none;
-  color: $dark;
 }
 
 .btn-danger,
 .alert-danger {
   background-color: $danger !important;
-  border: none;
-  color: $dark;
 }
 
 .btn-success,
 .alert-success {
   background-color: $success !important;
-  border: none;
-  color: $dark;
+}
+
+// btn hovers
+
+.btn-primary {
+  @include btn-hover($primary);
+}
+
+.btn-warning {
+  @include btn-hover($warning);
+}
+
+.btn-danger {
+  @include btn-hover($danger);
+}
+
+.btn-success {
+  @include btn-hover($success);
 }
 
 // custom
 
-a {
-  color: lighten($dark, 10%) !important;
+a,
+.nav-link {
+  color: lighten($dark, 10%);
   text-decoration: none;
 
   &:hover {
-    color: lighten($dark, 30%) !important;
+    color: lighten($dark, 30%);
   }
+}
+
+.btn {
+  color: $dark !important;
 }
 
 .dropdown-item:hover {
@@ -88,13 +114,21 @@ h2 {
   }
 }
 
-.form-control {
-  background-color: $white;
-}
 
 tr,
 th {
   background-color: $info !important;
+}
+
+.card {
+  background-color: $body-bg;
+}
+
+// forms
+
+.form-control,
+.form-select {
+  background-color: $white !important;
 }
 
 // mobile

@@ -16,12 +16,12 @@
   </div>
 
   <div class="mb-3">
-    <%= form.label :product_name, class: "form-label" %>
+    <%= form.label :product_name, "Product", class: "form-label" %>
     <%= form.text_field :product_name, class: "form-control" %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :product_count, class: "form-label" %>
+    <%= form.label :product_count, "Quantity", class: "form-label" %>
     <%= form.number_field :product_count, value: order.product_count || 1, min: 1, class: "form-control" %>
   </div>
 
