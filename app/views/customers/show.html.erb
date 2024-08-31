@@ -1,4 +1,4 @@
-<h2>Name: <%= @customer.full_name %></h2>
+<h2 class="mb-3"><%= @customer.full_name %></h2>
 <p><strong>Phone:</strong> <%= @customer.phone %></p>
 <p><strong>Email:</strong> <%= @customer.email %></p>
 
@@ -11,26 +11,27 @@
 <h2>Orders</h2>
 
 <% if @customer.orders.any? %>
-  <table class="table table-borderless">
-    <thead class="table-light">
-      <tr>
-        <th class="w-50">Product</th>
-        <th class="w-25">Quantity</th>
-        <th colspan="3" class="w-25"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @customer.orders.each do |order| %>
+  <div class="table-responsive border-0 rounded">
+    <table class="table table-borderless">
+      <thead class="table-light">
         <tr>
-          <td class="align-middle"><%= order.product_name %></td>
-          <td class="align-middle"><%= order.product_count %></td>
-          <td><%= button_to 'Show', order_path(order), method: :get, class: 'btn btn-primary' %></td>
-          <td><%= button_to 'Edit', edit_order_path(order), method: :get, class: 'btn btn-warning' %></td>
-          <td><%= button_to 'Delete', order_path(order), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+          <th class="w-50">Product</th>
+          <th class="w-25">Quantity</th>
+          <th colspan="2"></th> <!-- Combined columns for Edit and Delete -->
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @customer.orders.each do |order| %>
+          <tr>
+            <td class="align-middle"><%= order.product_name %></td>
+            <td class="align-middle"><%= order.product_count %></td>
+            <td class="align-middle" style="width: 5%;"><%= button_to 'Edit', edit_order_path(order), method: :get, class: 'btn btn-warning btn-sm' %></td>
+            <td class="align-middle" style="width: 5%;"><%= button_to 'Delete', order_path(order), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm delete-btn' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 <% else %>
   <p class="text-muted">This customer has no orders.</p>
 <% end %>
